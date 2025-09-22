@@ -1,0 +1,321 @@
+{
+  "meta": {
+    "name": "design.json — LP Dark Premium",
+    "version": "1.0.0",
+    "locale": "pt-BR",
+    "source": "extraído visualmente do screenshot fornecido (sem conteúdos textuais).",
+    "purpose": "Fornecer tokens e padrões para replicar a estética e a estrutura em páginas similares."
+  },
+
+  "style": {
+    "mood": ["premium", "corporativo", "tecnológico"],
+    "contrast": "alto em fundo escuro",
+    "shapes": { "sm": 8, "md": 12, "lg": 16, "xl": 20, "pill": 999 },
+    "opacities": { "muted": 0.72, "ghost": 0.56, "disabled": 0.38 }
+  },
+
+  "colors": {
+    "extracted_palette_hex": [
+      "#020718", "#060F2F", "#0A143B", "#0B2057", "#0E1A43", "#0E1A44",
+      "#0E1A45", "#0E1D4B", "#151D42", "#1B2B5B", "#1C2E75", "#8C8DA2"
+    ],
+    "brand": {
+      "bg-900": "#020718",
+      "bg-800": "#060F2F",
+      "bg-700": "#0B2057",
+      "surface-600": "#151D42",
+      "surface-500": "#1B2B5B",
+      "primary-500": "#1C2E75",
+      "primary-400": "#0E1D4B",
+      "primary-300": "#0B2057",
+      "text-100": "#FFFFFF",
+      "text-300": "#E9ECF8",
+      "text-500": "#8C8DA2",
+      "border": "rgba(255,255,255,0.08)"
+    },
+    "accents": {
+      "gold-500": "#D0A420",
+      "cyan-400": "#39E0FF",
+      "magenta-400": "#FF5A7A"
+    },
+    "gradients": {
+      "hero-radial": {
+        "type": "radial",
+        "stops": [
+          { "color": "rgba(255,255,255,0.05)", "pos": 0.0 },
+          { "color": "#1C2E75", "pos": 0.45 },
+          { "color": "#020718", "pos": 1.0 }
+        ]
+      },
+      "card-linear": {
+        "type": "linear-180",
+        "stops": [
+          { "color": "rgba(255,255,255,0.04)", "pos": 0.0 },
+          { "color": "rgba(255,255,255,0.00)", "pos": 1.0 }
+        ]
+      },
+      "cta-ouro": {
+        "type": "linear-90",
+        "stops": [
+          { "color": "#D0A420", "pos": 0.0 },
+          { "color": "#FFC857", "pos": 1.0 }
+        ]
+      }
+    }
+  },
+
+  "typography": {
+    "families": {
+      "display": ["Poppins", "Inter", "system-ui", "sans-serif"],
+      "text": ["Inter", "system-ui", "sans-serif"],
+      "mono": ["ui-monospace", "SFMono-Regular", "monospace"]
+    },
+    "scale_px": {
+      "display": 44,
+      "h1": 36,
+      "h2": 28,
+      "h3": 22,
+      "lead": 18,
+      "body": 16,
+      "small": 14,
+      "micro": 12
+    },
+    "weights": { "regular": 400, "medium": 500, "semibold": 600, "bold": 700 },
+    "colors": { "main": "#FFFFFF", "muted": "#8C8DA2" },
+    "letterspacing": { "tight": -0.02, "normal": 0, "wide": 0.02 }
+  },
+
+  "layout": {
+    "grid": { "columns": 12, "gutter_px": { "xs": 16, "md": 24, "xl": 28 } },
+    "container_max_px": { "md": 720, "lg": 960, "xl": 1200, "xxl": 1320 },
+    "breakpoints_px": { "xs": 360, "sm": 640, "md": 768, "lg": 1024, "xl": 1280, "xxl": 1440 },
+    "section_padding_y_px": { "sm": 32, "md": 48, "lg": 64 }
+  },
+
+  "effects": {
+    "shadow_card": "0 8px 24px rgba(0,0,0,0.35)",
+    "shadow_floating": "0 20px 40px rgba(0,0,0,0.45)",
+    "border_light": "rgba(255,255,255,0.06)",
+    "blue_glow": "0 0 32px rgba(80,120,255,0.25)",
+    "backdrop_blur_px": 8,
+    "focus_ring": { "size_px": 2, "color": "#39E0FF" }
+  },
+
+  "media": {
+    "avatar": { "shape": "rounded", "radius_px": 12, "ratio": "1:1 or 4:5" },
+    "icon_chip": {
+      "padding_px": 12,
+      "bg": "rgba(255,255,255,0.06)",
+      "border": "rgba(255,255,255,0.10)",
+      "radius_px": 14
+    },
+    "logo_cloud": { "monochrome": true, "opacity": 0.8, "max_height_px": 26 }
+  },
+
+  "components": {
+    "navbar": {
+      "height_px": 72,
+      "background": "rgba(2,7,24,0.72)",
+      "bottom_border": "rgba(255,255,255,0.06)",
+      "slots": ["brand-left", "links-center(optional)", "cta-right"]
+    },
+
+    "hero": {
+      "background": "gradient.hero-radial",
+      "columns_md": ["text(6)", "visual(6)"],
+      "gap_px": 40,
+      "title_size": "h1|display",
+      "description_size": "lead",
+      "ctas": {
+        "primary": "button.primary",
+        "secondary": "button.outline"
+      }
+    },
+
+    "feature_grid": {
+      "grid": { "cols_md": 5, "gap_px": 16 },
+      "card": {
+        "bg": "rgba(255,255,255,0.05)",
+        "border": "effects.border_light",
+        "radius_px": 12,
+        "padding_px": 14,
+        "shadow": "effects.shadow_card"
+      },
+      "icon": { "use": "media.icon_chip", "size_px": 18 },
+      "title_typo": { "weight": "semibold", "size": "small" }
+    },
+
+    "author_card": {
+      "surface": {
+        "bg_gradient": "gradient.card-linear",
+        "border": "effects.border_light",
+        "radius_px": 16,
+        "padding_px": 20,
+        "gap_px": 16,
+        "shadow": "effects.shadow_card"
+      },
+      "layout": {
+        "desktop": ["photo(30%)", "content(70%)"],
+        "mobile": ["photo full above", "content below"]
+      },
+      "photo": { "use": "media.avatar" },
+      "text": {
+        "name_size": "h3",
+        "meta_size": "micro",
+        "bio_size": "small",
+        "muted": true
+      },
+      "meta": { "tag_username_optional": true }
+    },
+
+    "logo_groups": {
+      "groups": ["group-a", "group-b", "group-c", "group-d"],
+      "title_style": { "caps": true, "color": "#8C8DA2", "size": "micro", "spacing": 0.18 },
+      "grid": { "cols_sm": 2, "cols_md": 4, "cols_lg": 6, "gap_px": 24 }
+    },
+
+    "button": {
+      "primary": {
+        "bg": "gradient.cta-ouro",
+        "text_color": "#0B2057",
+        "radius_px": 999,
+        "padding_y_px": 12,
+        "padding_x_px": 20,
+        "weight": "semibold",
+        "hover": { "shadow": "effects.shadow_floating", "scale": 1.02 }
+      },
+      "outline": {
+        "bg": "transparent",
+        "border": "rgba(255,255,255,0.24)",
+        "text_color": "#FFFFFF",
+        "hover_bg": "rgba(255,255,255,0.06)"
+      },
+      "ghost": {
+        "bg": "transparent",
+        "text_color": "#FFFFFF",
+        "hover_bg": "rgba(255,255,255,0.04)"
+      }
+    },
+
+    "badge": {
+      "neutral": {
+        "bg": "rgba(255,255,255,0.06)",
+        "border": "rgba(255,255,255,0.10)",
+        "radius_px": 999,
+        "padding_x_px": 10,
+        "padding_y_px": 6
+      },
+      "accent": { "bg": "#D0A420", "text": "#0B2057" }
+    },
+
+    "footer": {
+      "background": "#020718",
+      "divider": "rgba(255,255,255,0.06)",
+      "text": { "color": "#8C8DA2", "size": "small" }
+    }
+  },
+
+  "page_structure": [
+    "Navbar translúcida sobre fundo escuro com CTA à direita",
+    "Seção hero com gradiente radial, título, parágrafo, CTAs e mockup/visual à direita",
+    "Faixa de features em cards com ícone + rótulo em grade única",
+    "Lista de cards de pessoas/contribuidores; card com foto à esquerda e texto à direita",
+    "Agrupamento de logomarcas em 3–4 blocos (grades uniformes)",
+    "Rodapé simples em fundo escuro"
+  ],
+
+  "responsiveness": {
+    "hero": {
+      "md_plus": { "columns": "6/6" },
+      "sm": { "stack": true, "order": ["visual", "text"], "align": "center" }
+    },
+    "author_cards": {
+      "md_plus": { "direction": "row" },
+      "sm": { "direction": "column", "photo_full": true }
+    },
+    "type_fluid": { "enabled": true, "min_vw": 360, "max_vw": 1440 }
+  },
+
+  "accessibility": {
+    "min_contrast_ratio": 4.5,
+    "min_target_size_px": 44,
+    "focus_visible": true,
+    "prefers_reduced_motion": true,
+    "image_alt_required": true
+  },
+
+  "motion": {
+    "durations_ms": { "fast": 120, "base": 200, "slow": 320 },
+    "easing": "cubic-bezier(0.2, 0.8, 0.2, 1)",
+    "micro": [
+      "cards elevam discretamente no hover",
+      "glow azul sutil em CTAs no hover",
+      "fade-in + slide-up ~12px on-scroll"
+    ]
+  },
+
+  "css_tokens": {
+    "--bg": "#020718",
+    "--surface": "#151D42",
+    "--primary": "#1C2E75",
+    "--text": "#FFFFFF",
+    "--text-muted": "#8C8DA2",
+    "--border": "rgba(255,255,255,0.06)",
+    "--radius-md": "12px",
+    "--radius-lg": "16px",
+    "--shadow-card": "0 8px 24px rgba(0,0,0,0.35)"
+  },
+
+  "placeholders": {
+    "features": [
+      { "icon": "trend-up", "label": "Assunto A" },
+      { "icon": "shopping-bag", "label": "Assunto B" },
+      { "icon": "users", "label": "Assunto C" },
+      { "icon": "cpu", "label": "Assunto D" },
+      { "icon": "shield", "label": "Assunto E" }
+    ],
+    "people": [
+      {
+        "name": "Pessoa Exemplo",
+        "role": "Função",
+        "photo": "url_ou_asset",
+        "bio": "Resumo curto (2–3 linhas).",
+        "social": [{ "type": "x", "handle": "@usuario" }]
+      }
+    ],
+    "logos": {
+      "group-a": [{ "src": "logo1.svg", "alt": "Empresa A" }],
+      "group-b": [],
+      "group-c": [],
+      "group-d": []
+    }
+  },
+
+  "blueprints": {
+    "hero": [
+      "section.hero[data-bg=gradient.hero-radial]",
+      "container",
+      "grid cols-12 gap-40",
+      "col-span-12 md:col-span-6 => bloco texto",
+      "col-span-12 md:col-span-6 => visual/mockup"
+    ],
+    "features": [
+      "section",
+      "container",
+      "grid md:grid-cols-5 gap-16",
+      "item => card com ícone (chip) + rótulo"
+    ],
+    "people_list": [
+      "section",
+      "container",
+      "stack vertical",
+      "card => grid md:grid-cols-[photo(30%),content(70%)]"
+    ],
+    "logos": [
+      "section",
+      "container",
+      "subtítulo em caps",
+      "grade de logos (mono, opacidade 0.8)"
+    ]
+  }
+}
