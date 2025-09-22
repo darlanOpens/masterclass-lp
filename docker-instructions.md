@@ -113,3 +113,51 @@ docker system prune -a
 - `scroll_depth` - Profundidade de scroll
 - `time_on_page` - Tempo na página
 - `external_link_click` - Links externos
+
+## Configuração do Webhook
+
+### Estrutura do Payload Enviado:
+```json
+{
+  "form_id": "masterclass_bf_2024",
+  "form_title": "masterclass_black_friday",
+  "form_data": {
+    "nome": "João Silva",
+    "email": "joao@email.com",
+    "telefone": "(11) 98765-4321",
+    "site": "[empty]",
+    "redesSociais": "[empty]",
+    "faturamento": "[empty]",
+    "colaboradores": "[empty]",
+    "Segmento": "[empty]",
+    "utm_source": "[empty]",
+    "utm_medium": "[empty]",
+    "utm_campaign": "[empty]",
+    "utm_content": "[empty]",
+    "utm_term": "[empty]",
+    "timestamp": "2024-10-15 19:30:45",
+    "user_ip": "192.168.1.100",
+    "user_agent": "Mozilla/5.0...",
+    "page_url": "https://masterclass.com/",
+    "referer_url": "[empty]",
+    "post_id": null,
+    "utm_parameters": "{...}"
+  },
+  "cookies": {
+    "_ga": "GA1.1.123456789.1234567890",
+    "_fbp": "fb.2.1234567890.123456789",
+    "_gcl_au": "1.1.123456789.1234567890"
+  }
+}
+```
+
+### Funcionalidades Implementadas:
+- ✅ Validação de dados (email, telefone, nome obrigatórios)
+- ✅ Sanitização de inputs para prevenir XSS
+- ✅ Rate limiting (5 tentativas por minuto por usuário)
+- ✅ Retry automático em caso de falha
+- ✅ Coleta automática de UTMs e metadados
+- ✅ Tracking de cookies relevantes
+- ✅ Formatação automática de telefone brasileiro
+- ✅ Tratamento de erros com feedback visual
+- ✅ Integração completa com GTM
