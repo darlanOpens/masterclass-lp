@@ -1,7 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Poppins } from "next/font/google"
-// import { GTMProvider } from "@/lib/gtm"
+import { GTMProvider } from "@/lib/gtm"
 import "./globals.css"
 
 const poppins = Poppins({
@@ -24,7 +24,9 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${poppins.variable} antialiased`}>
       <body>
-        {children}
+        <GTMProvider>
+          {children}
+        </GTMProvider>
       </body>
     </html>
   )

@@ -1,38 +1,44 @@
-import { HeroElegant } from "../../components/hero-elegant"
-import { MethodElegant } from "../../components/method-elegant"
-import { FreeSection } from "../../components/free-section"
-import { FormElegant } from "../../components/form-elegant"
-import { FAQElegant } from "../../components/faq-elegant"
+'use client'
 
-export default function ElegantPage() {
+import { Navbar } from "@/components/navbar"
+import { HeroSection } from "@/components/hero-section"
+import { CountdownTimer } from "@/components/countdown-timer"
+import { StatsGrid } from "@/components/stats-grid"
+import { LeadCaptureForm } from "@/components/lead-capture-form"
+import { MethodSection } from "@/components/method-section"
+import { FlywheelElegant } from "@/components/flywheel-elegant"
+import { AuthorSection } from "@/components/author-section"
+import { BenefitsGrid } from "@/components/benefits-grid"
+import { FreeSection } from "@/components/free-section"
+import { FAQSection } from "@/components/faq-section"
+import { CTASection } from "@/components/cta-section"
+import { Footer } from "@/components/footer"
+import { useScrollTracking, useTimeOnPage } from "@/hooks/use-analytics"
+
+export default function Home() {
+  // Global tracking hooks
+  useScrollTracking()
+  useTimeOnPage()
+
   return (
-    <main className="min-h-screen bg-black overflow-x-hidden">
-      {/* Hero Section with Integrated Navigation */}
-      <HeroElegant />
+    <main className="min-h-screen bg-black text-white overflow-x-hidden">
+      <div className="relative">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
 
-      {/* C.R.E. Method */}
-      <MethodElegant />
-
-      {/* Free Section */}
-      <FreeSection />
-
-      {/* Lead Capture Form */}
-      <FormElegant />
-
-      {/* FAQ Section */}
-      <FAQElegant />
-
-      {/* Simple Footer */}
-      <footer className="py-16 px-6 border-t border-slate-800/50">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="text-slate-500 text-sm mb-4">
-            © 2024 Masterclass Black Friday - Método C.R.E.
-          </div>
-          <div className="text-slate-600 text-xs">
-            Experience-Led Growth para sua Black Friday
-          </div>
-        </div>
-      </footer>
+        <Navbar />
+        <HeroSection />
+        <CountdownTimer />
+        <StatsGrid />
+        <LeadCaptureForm />
+        <MethodSection />
+        <FlywheelElegant />
+        <AuthorSection />
+        <BenefitsGrid />
+        <FreeSection />
+        <FAQSection />
+        <CTASection />
+        <Footer />
+      </div>
     </main>
   )
 }
