@@ -1,28 +1,28 @@
 export function StatsGrid() {
   const stats = [
     {
-      value: "98%",
-      label: "Faster time to market",
-      description: "com método ELG",
-      company: "E-commerce",
-    },
-    {
       value: "300%",
-      label: "Increase in conversions",
-      description: "na Black Friday",
-      company: "Retail",
+      label: "Aumento em conversão",
+      description: "na Black Friday 2023",
+      company: "Cases reais",
     },
     {
-      value: "6x",
-      label: "Faster to build + deploy",
-      description: "estratégias C.R.E.",
-      company: "SaaS",
+      value: "R$ 2.3M",
+      label: "Faturamento extra",
+      description: "com método C.R.E.",
+      company: "Em apenas 7 dias",
     },
     {
-      value: "20 dias",
-      label: "Saved on implementation",
-      description: "tempo médio",
-      company: "Marketplace",
+      value: "87%",
+      label: "Recompra pós-BF",
+      description: "clientes satisfeitos",
+      company: "Recorrência",
+    },
+    {
+      value: "+500",
+      label: "Empresas treinadas",
+      description: "resultados comprovados",
+      company: "Desde 2019",
     },
   ]
 

@@ -1,9 +1,14 @@
 import { Navbar } from "@/components/navbar"
 import { HeroSection } from "@/components/hero-section"
+import { CountdownTimer } from "@/components/countdown-timer"
 import { StatsGrid } from "@/components/stats-grid"
+import { LeadCaptureForm } from "@/components/lead-capture-form"
 import { MethodSection } from "@/components/method-section"
+import { FlywheelElegant } from "@/components/flywheel-elegant"
 import { AuthorSection } from "@/components/author-section"
 import { BenefitsGrid } from "@/components/benefits-grid"
+import { FreeSection } from "@/components/free-section"
+import { FAQSection } from "@/components/faq-section"
 import { CTASection } from "@/components/cta-section"
 import { Footer } from "@/components/footer"
 
@@ -15,10 +20,15 @@ export default function Home() {
 
         <Navbar />
         <HeroSection />
+        <CountdownTimer />
         <StatsGrid />
+        <LeadCaptureForm />
         <MethodSection />
+        <FlywheelElegant />
         <AuthorSection />
         <BenefitsGrid />
+        <FreeSection />
+        <FAQSection />
         <CTASection />
         <Footer />
       </div>

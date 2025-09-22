@@ -1,10 +1,17 @@
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Calendar, Clock, User, ArrowRight } from "lucide-react"
+import { useRef } from "react"
+import { useIntersectionTracking, useCTATracking, useExternalLinkTracking } from "@/hooks/use-analytics"
 
 export function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const { trackCTA } = useCTATracking()
+  const { trackExternalClick } = useExternalLinkTracking()
+
+  useIntersectionTracking(sectionRef, 'hero_section')
   return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    <section ref={sectionRef} className="relative min-h-screen flex items-center pt-20 overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#1f2b66]/20 via-black to-black" />
 
@@ -51,16 +58,27 @@ export function HeroSection() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="bg-[#db3425] hover:bg-[#db3425]/90 text-white font-semibold px-8 py-4 rounded-full hover:scale-105 transition-all duration-300 text-lg group glow-red">
-                Quero minha vaga
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button
-                variant="outline"
-                className="border-white/20 text-white hover:bg-white/10 px-8 py-4 rounded-full bg-transparent font-medium"
+              <a href="#inscricao" className="inline-block">
+                <Button
+                  onClick={() => trackCTA('garantir_vaga_principal', 'hero_section', 'primary')}
+                  className="bg-[#db3425] hover:bg-[#db3425]/90 text-white font-semibold px-8 py-4 rounded-full hover:scale-105 transition-all duration-300 text-lg group glow-red"
+                >
+                  QUERO GARANTIR MINHA VAGA AGORA
+                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </a>
+              <a
+                href="https://wa.me/?text=Não perca a Masterclass GRATUITA sobre o método C.R.E. para Black Friday! 🚀 Dia 15/10 às 19h. Garanta sua vaga: [LINK]"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                Convide no WhatsApp
-              </Button>
+                <Button
+                  variant="outline"
+                  className="border-white/20 text-white hover:bg-white/10 px-8 py-4 rounded-full bg-transparent font-medium"
+                >
+                  📱 Compartilhar com amigos
+                </Button>
+              </a>
             </div>
           </div>
 
