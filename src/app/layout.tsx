@@ -2,7 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Poppins } from "next/font/google"
 import { GTMProvider } from "@/lib/gtm"
-import "./globals.css"
+import "../globals.css"
 
 const poppins = Poppins({
   subsets: ["latin"],
