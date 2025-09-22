@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  basePath: '/masterclass-bf',
   eslint: {
     ignoreDuringBuilds: true,
   },
