@@ -50,6 +50,11 @@ export function LeadCaptureForm() {
       if (result.success) {
         setIsSuccess(true)
         trackFormSuccess()
+
+        // Redirecionar para página de obrigado após 2 segundos
+        setTimeout(() => {
+          window.location.href = '/obrigado'
+        }, 2000)
       } else {
         throw new Error(result.message)
       }
