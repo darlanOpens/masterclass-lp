@@ -71,6 +71,7 @@ export function HeroSection() {
                 href="https://wa.me/?text=Não perca a Masterclass GRATUITA sobre o método C.R.E. para Black Friday! 🚀 Dia 15/10 às 19h. Garanta sua vaga: [LINK]"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackExternalClick('https://wa.me/', 'Compartilhar com amigos')}
               >
                 <Button
                   variant="outline"

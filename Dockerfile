@@ -26,6 +26,14 @@ COPY app/ .
 # Uncomment the following line in case you want to disable telemetry during the build.
 ENV NEXT_TELEMETRY_DISABLED 1
 
+# Build args for environment variables
+ARG NEXT_PUBLIC_GTM_ID
+ARG NEXT_PUBLIC_GA_MEASUREMENT_ID
+
+# Set environment variables for build
+ENV NEXT_PUBLIC_GTM_ID=$NEXT_PUBLIC_GTM_ID
+ENV NEXT_PUBLIC_GA_MEASUREMENT_ID=$NEXT_PUBLIC_GA_MEASUREMENT_ID
+
 RUN npm run build
 
 # Production image, copy all the files and run next

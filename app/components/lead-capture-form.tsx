@@ -1,10 +1,11 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
 import { Check, Loader2, Shield, Clock, Users } from "lucide-react"
+import { useIntersectionTracking, useFormTracking } from "@/hooks/use-analytics"
 
 export function LeadCaptureForm() {
   const [email, setEmail] = useState("")
@@ -12,20 +13,40 @@ export function LeadCaptureForm() {
   const [whatsapp, setWhatsapp] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
+  const [hasStarted, setHasStarted] = useState(false)
+
+  const sectionRef = useRef<HTMLElement>(null)
+  const { trackFormStart, trackFormSuccess, trackFormError } = useFormTracking('lead_capture_masterclass')
+
+  useIntersectionTracking(sectionRef, 'lead_capture_section')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
 
-    // Simular envio do form
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    try {
+      // Simular envio do form
+      await new Promise(resolve => setTimeout(resolve, 2000))
 
-    setIsSuccess(true)
-    setIsLoading(false)
+      setIsSuccess(true)
+      trackFormSuccess()
+    } catch (error) {
+      trackFormError('submission', 'Network error or server failure')
+      console.error('Form submission error:', error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const handleFirstFocus = () => {
+    if (!hasStarted) {
+      setHasStarted(true)
+      trackFormStart()
+    }
   }
 
   return (
-    <section className="py-20 relative" id="inscricao">
+    <section ref={sectionRef} className="py-20 relative" id="inscricao">
       <div className="container mx-auto px-6">
         <Card className="bg-gradient-to-br from-[#db3425]/10 via-black to-[#1f2b66]/10 border border-white/20 p-8 lg:p-12 max-w-4xl mx-auto relative overflow-hidden">
           {/* Background effects */}
@@ -73,6 +94,7 @@ export function LeadCaptureForm() {
                       required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
+                      onFocus={handleFirstFocus}
                       className="bg-white/5 border-white/20 text-white placeholder:text-gray-500"
                       placeholder="João Silva"
                     />
@@ -88,6 +110,7 @@ export function LeadCaptureForm() {
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
+                      onFocus={handleFirstFocus}
                       className="bg-white/5 border-white/20 text-white placeholder:text-gray-500"
                       placeholder="seu@email.com"
                     />
@@ -104,6 +127,7 @@ export function LeadCaptureForm() {
                     required
                     value={whatsapp}
                     onChange={(e) => setWhatsapp(e.target.value)}
+                    onFocus={handleFirstFocus}
                     className="bg-white/5 border-white/20 text-white placeholder:text-gray-500"
                     placeholder="(11) 98765-4321"
                   />

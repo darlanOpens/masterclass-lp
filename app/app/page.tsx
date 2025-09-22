@@ -1,3 +1,5 @@
+'use client'
+
 import { Navbar } from "@/components/navbar"
 import { HeroSection } from "@/components/hero-section"
 import { CountdownTimer } from "@/components/countdown-timer"
@@ -11,8 +13,12 @@ import { FreeSection } from "@/components/free-section"
 import { FAQSection } from "@/components/faq-section"
 import { CTASection } from "@/components/cta-section"
 import { Footer } from "@/components/footer"
+import { useScrollTracking, useTimeOnPage } from "@/hooks/use-analytics"
 
 export default function Home() {
+  // Global tracking hooks
+  useScrollTracking()
+  useTimeOnPage()
   return (
     <main className="min-h-screen bg-black text-white overflow-x-hidden">
       <div className="relative">

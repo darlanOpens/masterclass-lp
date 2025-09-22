@@ -5,11 +5,16 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - NEXT_PUBLIC_GTM_ID=${NEXT_PUBLIC_GTM_ID}
+        - NEXT_PUBLIC_GA_MEASUREMENT_ID=${NEXT_PUBLIC_GA_MEASUREMENT_ID}
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=production
       - PORT=3000
+      - NEXT_PUBLIC_GTM_ID=${NEXT_PUBLIC_GTM_ID}
+      - NEXT_PUBLIC_GA_MEASUREMENT_ID=${NEXT_PUBLIC_GA_MEASUREMENT_ID}
     restart: unless-stopped
 
   # Development service
@@ -26,6 +31,8 @@ services:
     environment:
       - NODE_ENV=development
       - PORT=3000
+      - NEXT_PUBLIC_GTM_ID=${NEXT_PUBLIC_GTM_ID}
+      - NEXT_PUBLIC_GA_MEASUREMENT_ID=${NEXT_PUBLIC_GA_MEASUREMENT_ID}
     restart: unless-stopped
     profiles:
       - dev
