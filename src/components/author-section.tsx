@@ -13,7 +13,7 @@ export function AuthorSection() {
               {/* Main photo with gradient border */}
               <div className="aspect-square bg-gradient-to-br from-[#db3425] to-[#1f2b66] rounded-3xl p-1">
                 <div className="w-full h-full bg-black rounded-3xl overflow-hidden">
-                  <img src="/professional-business-executive-headshot-douglas-c.jpg" alt="Douglas Conrad" className="w-full h-full object-cover" />
+                  <img src="/professional-business-person-presenting-data-analy.jpg" alt="Douglas Conrad" className="w-full h-full object-cover" />
                 </div>
               </div>
 

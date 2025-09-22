@@ -5,7 +5,9 @@
       "Bash(npm install:*)",
       "Bash(tree:*)",
       "Bash(grep:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(node:*)",
+      "Bash(docker run:*)"
     ],
     "deny": [],
     "ask": []

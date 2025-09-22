@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext, useEffect, ReactNode } from 'react'
-import { gtmPush, gtmInit } from 'react-gtm-ts'
+import { ReactTagManager } from 'react-gtm-ts'
 
 interface GTMContextType {
   trackEvent: (eventName: string, parameters?: Record<string, any>) => void
@@ -24,9 +24,8 @@ export function GTMProvider({ children }: GTMProviderProps) {
     const gtmId = process.env.NEXT_PUBLIC_GTM_ID
 
     if (gtmId && typeof window !== 'undefined') {
-      gtmInit({
-        id: gtmId,
-        dataLayer: 'dataLayer',
+      ReactTagManager.initialize({
+        gtmId: gtmId,
         dataLayerName: 'dataLayer'
       })
 
@@ -36,7 +35,7 @@ export function GTMProvider({ children }: GTMProviderProps) {
   }, [])
 
   const trackEvent = (eventName: string, parameters: Record<string, any> = {}) => {
-    gtmPush({
+    ReactTagManager.sendDataToGTM({
       event: eventName,
       ...parameters,
       timestamp: new Date().toISOString(),
