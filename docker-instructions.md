@@ -2,14 +2,17 @@
 
 ## Configuração das Variáveis de Ambiente
 
-### 1. Configurar GTM (Google Tag Manager)
+### 1. Configurar variáveis de ambiente
 ```bash
 # Copie o arquivo de exemplo e configure suas variáveis
 cp .env.example .env
 
-# Edite o arquivo .env com seus IDs reais:
+# Edite o arquivo .env com suas configurações reais:
 NEXT_PUBLIC_GTM_ID=GTM-XXXXXXX
 NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+WEBHOOK_URL=https://seu-webhook.com/endpoint
+FORM_ID=masterclass_bf_2024
+FORM_TITLE=masterclass_black_friday
 ```
 
 ## Construir e executar em produção
@@ -24,6 +27,9 @@ docker build -t masterclass-lp .
 docker run -p 3000:3000 \
   -e NEXT_PUBLIC_GTM_ID=GTM-XXXXXXX \
   -e NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX \
+  -e WEBHOOK_URL=https://seu-webhook.com/endpoint \
+  -e FORM_ID=masterclass_bf_2024 \
+  -e FORM_TITLE=masterclass_black_friday \
   masterclass-lp
 ```
 

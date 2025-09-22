@@ -4,8 +4,10 @@ import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
-import { Check, Loader2, Shield, Clock, Users } from "lucide-react"
+import { Check, Loader2, Shield, Clock, Users, AlertCircle } from "lucide-react"
 import { useIntersectionTracking, useFormTracking } from "@/hooks/use-analytics"
+import { sendToWebhook, isRateLimited, recordSubmissionAttempt, getRateLimitIdentifier } from "@/lib/webhook-service"
+import { getUserIP } from "@/lib/browser-utils"
 
 export function LeadCaptureForm() {
   const [email, setEmail] = useState("")
@@ -14,6 +16,7 @@ export function LeadCaptureForm() {
   const [isLoading, setIsLoading] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [hasStarted, setHasStarted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const sectionRef = useRef<HTMLElement>(null)
   const { trackFormStart, trackFormSuccess, trackFormError } = useFormTracking('lead_capture_masterclass')
@@ -23,15 +26,38 @@ export function LeadCaptureForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
+    setError(null)
 
     try {
-      // Simular envio do form
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      // Check rate limiting
+      const userIP = await getUserIP()
+      const rateLimitId = getRateLimitIdentifier(email, userIP)
 
-      setIsSuccess(true)
-      trackFormSuccess()
+      if (isRateLimited(rateLimitId)) {
+        throw new Error('Muitas tentativas. Tente novamente em alguns minutos.')
+      }
+
+      // Record submission attempt
+      recordSubmissionAttempt(rateLimitId)
+
+      // Send to webhook
+      const result = await sendToWebhook({
+        nome: name,
+        email: email,
+        telefone: whatsapp
+      })
+
+      if (result.success) {
+        setIsSuccess(true)
+        trackFormSuccess()
+      } else {
+        throw new Error(result.message)
+      }
+
     } catch (error) {
-      trackFormError('submission', 'Network error or server failure')
+      const errorMessage = error instanceof Error ? error.message : 'Erro desconhecido ao enviar formulário'
+      setError(errorMessage)
+      trackFormError('submission', errorMessage)
       console.error('Form submission error:', error)
     } finally {
       setIsLoading(false)
@@ -132,6 +158,14 @@ export function LeadCaptureForm() {
                     placeholder="(11) 98765-4321"
                   />
                 </div>
+
+                {/* Error display */}
+                {error && (
+                  <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4 flex items-center gap-3">
+                    <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
+                    <p className="text-red-400 text-sm">{error}</p>
+                  </div>
+                )}
 
                 <Button
                   type="submit"
