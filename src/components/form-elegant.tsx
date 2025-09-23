@@ -2,6 +2,8 @@
 
 import { useState, useRef, useEffect } from "react"
 import { formatPhoneNumber } from "@/lib/phone-mask"
+import { sendToWebhook, isRateLimited, recordSubmissionAttempt, getRateLimitIdentifier } from "@/lib/webhook-service"
+import { getUserIP } from "@/lib/browser-utils"
 
 interface FieldState {
   name: string
@@ -129,35 +131,48 @@ export function FormElegant() {
       return
     }
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    setIsSuccess(true)
-    setIsSubmitting(false)
+    try {
+      // Check rate limiting
+      const userIP = await getUserIP()
+      const rateLimitId = getRateLimitIdentifier(fields.email, userIP)
+
+      if (isRateLimited(rateLimitId)) {
+        setErrors({ email: 'Muitas tentativas. Tente novamente em alguns minutos.' })
+        setIsSubmitting(false)
+        return
+      }
+
+      // Record submission attempt
+      recordSubmissionAttempt(rateLimitId)
+
+      // Send to webhook
+      const result = await sendToWebhook({
+        nome: fields.name,
+        email: fields.email,
+        telefone: fields.whatsapp,
+        segmento: fields.segment
+      })
+
+      if (result.success) {
+        setIsSuccess(true)
+        // Redirect to thank you page after 1 second
+        setTimeout(() => {
+          window.location.href = '/obrigado'
+        }, 1000)
+      } else {
+        setErrors({ email: result.message || 'Erro ao enviar formulário' })
+      }
+    } catch (error) {
+      console.error('Form submission error:', error)
+      setErrors({ email: 'Erro ao enviar formulário. Tente novamente.' })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
+  // Remove the success modal - will redirect instead
   if (isSuccess) {
-    return (
-      <section id="inscricao" className="py-32 px-6 relative">
-        <div className="max-w-lg mx-auto text-center">
-          <div className="bg-gradient-to-b from-green-500/20 to-green-600/10 border border-green-500/30 rounded-3xl p-12 backdrop-blur">
-            <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <h3 className="text-2xl font-bold text-white mb-4">
-              Inscrição Confirmada!
-            </h3>
-            <p className="text-slate-300 mb-2">
-              Enviamos os detalhes para <strong>{fields.email}</strong>
-            </p>
-            <p className="text-slate-400 text-sm">
-              Você receberá o link de acesso 1 hora antes do evento
-            </p>
-          </div>
-        </div>
-      </section>
-    )
+    return null
   }
 
   return (
