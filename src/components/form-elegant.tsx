@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
+import { formatPhoneNumber } from "@/lib/phone-mask"
 
 interface FieldState {
   name: string
@@ -93,7 +94,9 @@ export function FormElegant() {
   }
 
   const handleChange = (name: string, value: string) => {
-    setFields(prev => ({ ...prev, [name]: value }))
+    // Apply phone mask if it's the whatsapp field
+    const finalValue = name === "whatsapp" ? formatPhoneNumber(value) : value
+    setFields(prev => ({ ...prev, [name]: finalValue }))
 
     // Clear error when user starts typing
     if (errors[name as keyof FieldState]) {
@@ -249,6 +252,7 @@ export function FormElegant() {
                   onChange={(e) => handleChange("whatsapp", e.target.value)}
                   onFocus={() => setFocused("whatsapp")}
                   onBlur={(e) => handleBlur("whatsapp", e.target.value)}
+                  maxLength={15}
                   className={`w-full bg-transparent border-b-2 pb-3 pt-6 text-white placeholder-transparent focus:outline-none transition-colors ${
                     errors.whatsapp ? "border-red-500" : focused === "whatsapp" ? "border-red-600" : "border-slate-700"
                   }`}
