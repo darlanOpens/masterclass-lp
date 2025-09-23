@@ -42,7 +42,7 @@ export function HeroElegant() {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'url("/Frame 1.png")'
+          backgroundImage: 'url("masterclass-bf/Frame 1.png")'
         }}
       />
       
@@ -61,7 +61,7 @@ export function HeroElegant() {
         {/* Logo */}
         <div className="mb-12">
           <img 
-            src="/masterclass-varejo-insights.png" 
+            src="masterclass-bf/masterclass-varejo-insights.png" 
             alt="Masterclass Varejo Insights" 
             className="h-16 md:h-20 mx-auto object-contain"
           />
