@@ -25,7 +25,7 @@ export async function submitForm(
   retries: number = 3
 ): Promise<ClientWebhookResponse> {
   try {
-    const response = await fetch('/api/submit-form', {
+    const response = await fetch('/masterclass-bf/api/submit-form', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
