@@ -86,7 +86,7 @@ export function FormElegant() {
     "Alimentação",
     "Comunicação",
     "Outro",
-    "Parceiros"
+    "parceiros"
   ]
 
   const validateField = (name: string, value: string) => {
