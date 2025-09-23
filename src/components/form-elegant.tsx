@@ -62,21 +62,31 @@ export function FormElegant() {
 
   // Opções de segmento de empresa
   const segmentOptions = [
-    "E-commerce / Varejo Online",
-    "Moda e Acessórios",
-    "Eletrônicos e Tecnologia",
-    "Saúde e Beleza",
-    "Casa e Decoração",
-    "Esporte e Lazer",
-    "Alimentação e Bebidas",
+    "Saúde",
+    "Educação",
+    "Varejo",
+    "Tecnologia",
+    "Serviços",
+    "Indústria",
+    "Construção e Imobiliário",
+    "Finanças",
+    "Entretenimento e Lazer",
+    "Governamental",
+    "Ecommerce",
+    "ONG",
     "Automotivo",
-    "Educação e Treinamento",
-    "Serviços Financeiros",
-    "Imobiliário",
-    "B2B / Fornecimento",
-    "Agronegócio",
-    "Turismo e Hospedagem",
-    "Outros"
+    "Turismo",
+    "Transporte",
+    "Telecomunicações",
+    "Segurança",
+    "Hotelaria",
+    "Advocacia",
+    "Moda",
+    "Marketing",
+    "Alimentação",
+    "Comunicação",
+    "Outro",
+    "Parceiros"
   ]
 
   const validateField = (name: string, value: string) => {
