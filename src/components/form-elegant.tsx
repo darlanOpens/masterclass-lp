@@ -153,7 +153,7 @@ export function FormElegant() {
         setIsSuccess(true)
         // Redirect to thank you page after 1 second
         setTimeout(() => {
-          window.location.href = '/obrigado'
+          window.location.href = '/masterclass-bf/obrigado'
         }, 1000)
       } else {
         setErrors({ email: result.message || 'Erro ao enviar formulário' })
