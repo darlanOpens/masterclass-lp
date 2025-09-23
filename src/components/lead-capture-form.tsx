@@ -42,7 +42,7 @@ export function LeadCaptureForm() {
 
         // Redirecionar para página de obrigado após 2 segundos
         setTimeout(() => {
-          window.location.href = '/obrigado'
+          window.location.href = '/masterclass-bf/obrigado'
         }, 2000)
       } else {
         throw new Error(result.message)
