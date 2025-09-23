@@ -114,7 +114,22 @@ docker system prune -a
 - `time_on_page` - Tempo na página
 - `external_link_click` - Links externos
 
-## Configuração do Webhook
+## ⚠️ IMPORTANTE: Configuração do Webhook
+
+### Problema Resolvido
+O erro "WEBHOOK_URL não configurada" foi corrigido. A aplicação agora usa uma API route (`/api/submit-form`) que funciona tanto do lado do servidor quanto do cliente.
+
+### Como Configurar
+1. **Crie um arquivo `.env` ou `.env.local`** na raiz do projeto com:
+```bash
+WEBHOOK_URL=https://seu-webhook.com/endpoint
+FORM_ID=masterclass_bf_2024
+FORM_TITLE=masterclass_black_friday
+NEXT_PUBLIC_GTM_ID=GTM-XXXXXXX
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+```
+
+2. **Para produção/Docker**, certifique-se de que as variáveis estão configuradas no ambiente do container.
 
 ### Estrutura do Payload Enviado:
 ```json

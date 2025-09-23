@@ -2,8 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { formatPhoneNumber } from "@/lib/phone-mask"
-import { sendToWebhook, isRateLimited, recordSubmissionAttempt, getRateLimitIdentifier } from "@/lib/webhook-service"
-import { getUserIP } from "@/lib/browser-utils"
+import { submitForm, validateClientFormData } from "@/lib/webhook-client"
 
 interface FieldState {
   name: string
@@ -132,25 +131,12 @@ export function FormElegant() {
     }
 
     try {
-      // Check rate limiting
-      const userIP = await getUserIP()
-      const rateLimitId = getRateLimitIdentifier(fields.email, userIP)
-
-      if (isRateLimited(rateLimitId)) {
-        setErrors({ email: 'Muitas tentativas. Tente novamente em alguns minutos.' })
-        setIsSubmitting(false)
-        return
-      }
-
-      // Record submission attempt
-      recordSubmissionAttempt(rateLimitId)
-
-      // Send to webhook
-      const result = await sendToWebhook({
+      // Send to webhook via API route
+      const result = await submitForm({
         nome: fields.name,
         email: fields.email,
         telefone: fields.whatsapp,
-        segmento: fields.segment
+        Segmento: fields.segment
       })
 
       if (result.success) {

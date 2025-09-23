@@ -6,8 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
 import { Check, Loader2, Shield, Clock, Users, AlertCircle } from "lucide-react"
 import { useIntersectionTracking, useFormTracking } from "@/hooks/use-analytics"
-import { sendToWebhook, isRateLimited, recordSubmissionAttempt, getRateLimitIdentifier } from "@/lib/webhook-service"
-import { getUserIP } from "@/lib/browser-utils"
+import { submitForm, validateClientFormData } from "@/lib/webhook-client"
 import { formatPhoneNumber } from "@/lib/phone-mask"
 
 export function LeadCaptureForm() {
@@ -30,19 +29,8 @@ export function LeadCaptureForm() {
     setError(null)
 
     try {
-      // Check rate limiting
-      const userIP = await getUserIP()
-      const rateLimitId = getRateLimitIdentifier(email, userIP)
-
-      if (isRateLimited(rateLimitId)) {
-        throw new Error('Muitas tentativas. Tente novamente em alguns minutos.')
-      }
-
-      // Record submission attempt
-      recordSubmissionAttempt(rateLimitId)
-
-      // Send to webhook
-      const result = await sendToWebhook({
+      // Send to webhook via API route
+      const result = await submitForm({
         nome: name,
         email: email,
         telefone: whatsapp
