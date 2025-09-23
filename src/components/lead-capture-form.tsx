@@ -8,6 +8,7 @@ import { Check, Loader2, Shield, Clock, Users, AlertCircle } from "lucide-react"
 import { useIntersectionTracking, useFormTracking } from "@/hooks/use-analytics"
 import { sendToWebhook, isRateLimited, recordSubmissionAttempt, getRateLimitIdentifier } from "@/lib/webhook-service"
 import { getUserIP } from "@/lib/browser-utils"
+import { formatPhoneNumber } from "@/lib/phone-mask"
 
 export function LeadCaptureForm() {
   const [email, setEmail] = useState("")
@@ -157,10 +158,14 @@ export function LeadCaptureForm() {
                     type="tel"
                     required
                     value={whatsapp}
-                    onChange={(e) => setWhatsapp(e.target.value)}
+                    onChange={(e) => {
+                      const formatted = formatPhoneNumber(e.target.value)
+                      setWhatsapp(formatted)
+                    }}
                     onFocus={handleFirstFocus}
                     className="bg-white/5 border-white/20 text-white placeholder:text-gray-500"
                     placeholder="(11) 98765-4321"
+                    maxLength={15}
                   />
                 </div>
 
