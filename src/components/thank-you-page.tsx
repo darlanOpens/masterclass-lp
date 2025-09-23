@@ -64,7 +64,7 @@ export function ThankYouPage() {
                 materiais complementares e poderá interagir com outros participantes.
               </p>
               <a
-                href="https://chat.whatsapp.com/GRUPOCOMUNIDADE"
+                href="https://chat.whatsapp.com/GN17CAQQOKaC57Nkc5KKQ6"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleCommunityClick}
@@ -146,7 +146,7 @@ export function ThankYouPage() {
             </p>
 
             <a
-              href="https://chat.whatsapp.com/GRUPOCOMUNIDADE"
+              href="https://chat.whatsapp.com/GN17CAQQOKaC57Nkc5KKQ6"
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleCommunityClick}

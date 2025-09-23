@@ -101,7 +101,7 @@ export function FAQSection() {
             Ainda tem dúvidas? Fale com nossa equipe
           </p>
           <a
-            href="https://wa.me/5511999999999?text=Olá! Tenho uma dúvida sobre a masterclass"
+            href="https://chat.whatsapp.com/GN17CAQQOKaC57Nkc5KKQ6"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-green-500/20 border border-green-500/30 text-green-400 px-6 py-3 rounded-full hover:bg-green-500/30 transition-colors"

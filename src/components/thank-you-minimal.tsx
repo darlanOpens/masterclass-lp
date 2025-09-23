@@ -36,7 +36,7 @@ export function ThankYouMinimal() {
 
           {/* Main CTA */}
           <a
-            href="https://chat.whatsapp.com/GRUPOCOMUNIDADE"
+            href="https://chat.whatsapp.com/GN17CAQQOKaC57Nkc5KKQ6"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#25D366]/90 text-white font-semibold px-8 py-4 rounded-full text-lg transition-all duration-300 hover:scale-105 mb-6"
