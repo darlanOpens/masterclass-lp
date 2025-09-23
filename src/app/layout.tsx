@@ -13,7 +13,13 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Masterclass Black Friday - Método C.R.E.",
   description: "Como transformar pontos de contato em conversão na Black Friday com Douglas Conrad",
-    generator: 'v0.app'
+  generator: 'v0.app',
+  icons: {
+    icon: [
+      { url: '/masterclass-bf/favicon.ico' },
+      { url: '/masterclass-bf/favicon.svg', type: 'image/svg+xml' }
+    ]
+  }
 }
 
 export default function RootLayout({

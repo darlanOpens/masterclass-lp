@@ -36,7 +36,7 @@ export function FlywheelElegant() {
             {/* SVG Flywheel */}
             <div className="w-full max-w-4xl mx-auto">
               <img
-                src="/Flywheel.svg"
+                src="/masterclass-bf/Flywheel.svg"
                 alt="Flywheel C.R.E. - Ciclo virtuoso da Black Friday"
                 className="w-full h-auto mx-auto"
                 style={{ maxHeight: '600px' }}

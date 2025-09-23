@@ -90,7 +90,7 @@ export function HeroSection() {
               <div className="aspect-[4/5] bg-gradient-to-br from-[#1f2b66] to-[#db3425] rounded-3xl p-1">
                 <div className="w-full h-full bg-black rounded-3xl flex items-center justify-center">
                   <img
-                    src="/douglas-hero.jpg"
+                    src="/masterclass-bf/douglas-hero.jpg"
                     alt="Douglas Conrad apresentando método ELG"
                     className="w-full h-full object-cover rounded-3xl"
                   />

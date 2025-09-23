@@ -127,7 +127,7 @@ export function MethodElegant() {
             <div className="mb-12">
               <div className="w-full max-w-2xl mx-auto">
                 <img
-                  src="/Flywheel.svg"
+                  src="/masterclass-bf/Flywheel.svg"
                   alt="Flywheel C.R.E. - Ciclo virtuoso"
                   className="w-full h-auto mx-auto"
                   style={{ maxHeight: '400px' }}
